@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{84A95F4A-D784-479E-A47C-8FC99E728FA5}</ProjectGuid>
+    <Keyword>ManagedCProj</Keyword>
+    <RootNamespace>ImageWatchNativeHelpers</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <TargetFrameworkVersion>4.7.2</TargetFrameworkVersion>
+    <NuGetPackages>$(MSBuildThisFileDirectory)..\NuGetPackages</NuGetPackages>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CLRSupport>true</CLRSupport>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CLRSupport>true</CLRSupport>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <SpectreMitigation>Spectre</SpectreMitigation>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <SpectreMitigation>Spectre</SpectreMitigation>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <Import Project="$(NuGetPackages)\Microsoft.VisualStudioEng.MicroBuild.Core.1.0.0\build\Microsoft.VisualStudioEng.MicroBuild.Core.props" Condition="Exists('$(NuGetPackages)\Microsoft.VisualStudioEng.MicroBuild.Core.1.0.0\build\Microsoft.VisualStudioEng.MicroBuild.Core.props')" />
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Condition="'$(SignType)' == 'real'">
+    <SignAssembly>true</SignAssembly>
+    <LinkDelaySign>true</LinkDelaySign>
+    <LinkKeyFile>$(MSBuildProjectDirectory)\..\..\InternalAPIs\DevDiv\FinalPublicKey.snk</LinkKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>obj\$(Platform)\$(Configuration)\</IntDir>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)VisionTools\inc;$(SolutionDir)vtiview\NativeImage</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>obj\$(Platform)\$(Configuration)\</IntDir>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)VisionTools\inc;$(SolutionDir)vtiview\NativeImage</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <FunctionLevelLinking Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</FunctionLevelLinking>
+      <SDLCheck Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</SDLCheck>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/ZH:SHA_256 %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>dbghelp.lib;version.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/debugtype:cv,fixup %(AdditionalOptions)</AdditionalOptions>
+      <OptimizeReferences Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</OptimizeReferences>
+      <EnableCOMDATFolding Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</EnableCOMDATFolding>
+      <CETCompat Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</CETCompat>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <FunctionLevelLinking Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</FunctionLevelLinking>
+      <SDLCheck Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</SDLCheck>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">/ZH:SHA_256 %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>dbghelp.lib;version.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">/debugtype:cv,fixup %(AdditionalOptions)</AdditionalOptions>
+      <OptimizeReferences Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</OptimizeReferences>
+      <EnableCOMDATFolding Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</EnableCOMDATFolding>
+      <CETCompat Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</CETCompat>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <FilesToSign Include="$(OutDir)ImageWatchNativeHelpers.dll">
+      <Authenticode>Microsoft400</Authenticode>
+      <StrongName>StrongName</StrongName>
+    </FilesToSign>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.Debugger.Engine">
+      <HintPath>$(SolutionDir)\NuGetPackages\Microsoft.VisualStudio.Debugger.Engine.17.0.3041101\ref\net462\Microsoft.VisualStudio.Debugger.Engine.dll</HintPath>
+      <Private>false</Private>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Debugger.Interop.10.0">
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Debugger.Interop.11.0">
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Debugger.Interop.12.0">
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Debugger.Interop.14.0">
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Debugger.Interop.15.0">
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Debugger.InteropA, Version=17.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ElFormatStringArg.h" />
+    <ClInclude Include="WatchedImage.h" />
+    <ClInclude Include="WatchedImageAbsOp.h" />
+    <ClInclude Include="WatchedImageBandOp.h" />
+    <ClInclude Include="WatchedImageBinaryOp.h" />
+    <ClInclude Include="WatchedImageClampOp.h" />
+    <ClInclude Include="WatchedImageD3D11Resource.h" />
+    <ClInclude Include="WatchedImageDiffOp.h" />
+    <ClInclude Include="WatchedImageFileOp.h" />
+    <ClInclude Include="WatchedImageFlipOpBase.h" />
+    <ClInclude Include="WatchedImageFlipOps.h" />
+    <ClInclude Include="WatchedImageHelpers.h" />
+    <ClInclude Include="WatchedImageImage.h" />
+    <ClInclude Include="WatchedImageNormOp.h" />
+    <ClInclude Include="WatchedImageOperator.h" />
+    <ClInclude Include="WatchedImagePtrOp.h" />
+    <ClInclude Include="WatchedImageScaleOp.h" />
+    <ClInclude Include="WatchedImageScaleOpBase.h" />
+    <ClInclude Include="WatchedImageThreshOp.h" />
+    <ClInclude Include="WatchedImageUnaryOp.h" />
+    <ClInclude Include="WatchedImageUserImage.h" />
+    <ClInclude Include="WatchedImageVTCImgInCache.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="ElFormatStringArg.cpp" />
+    <ClCompile Include="WatchedImage.cpp" />
+    <ClCompile Include="WatchedImageAbsOp.cpp" />
+    <ClCompile Include="WatchedImageBandOp.cpp" />
+    <ClCompile Include="WatchedImageBinaryOp.cpp" />
+    <ClCompile Include="WatchedImageClampOp.cpp" />
+    <ClCompile Include="WatchedImageD3D11Resource.cpp" />
+    <ClCompile Include="WatchedImageDiffOp.cpp" />
+    <ClCompile Include="WatchedImageFileOp.cpp" />
+    <ClCompile Include="WatchedImageFlipOpBase.cpp" />
+    <ClCompile Include="WatchedImageFlipOps.cpp" />
+    <ClCompile Include="WatchedImageHelpers.cpp" />
+    <ClCompile Include="WatchedImageImage.cpp" />
+    <ClCompile Include="WatchedImageNormOp.cpp" />
+    <ClCompile Include="WatchedImageOperator.cpp" />
+    <ClCompile Include="WatchedImagePtrOp.cpp" />
+    <ClCompile Include="WatchedImageScaleOp.cpp" />
+    <ClCompile Include="WatchedImageScaleOpBase.cpp" />
+    <ClCompile Include="WatchedImageThreshOp.cpp" />
+    <ClCompile Include="WatchedImageUnaryOp.cpp" />
+    <ClCompile Include="WatchedImageUserImage.cpp" />
+    <ClCompile Include="WatchedImageVTCImgInCache.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VisionTools\src\common\common.vcxproj">
+      <Project>{f0f1aca6-70b0-4322-ab74-c8dc49299240}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\VisionTools\src\core\core.vcxproj">
+      <Project>{7be4fd3f-0b30-422a-aab1-2b23c781689c}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\VisionTools\src\fileio\fileio.vcxproj">
+      <Project>{b8734155-8117-42a9-be7d-155366a035de}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\VisionTools\src\hdpio\hdpio.vcxproj">
+      <Project>{9b7e8327-7b04-49f0-9682-3ec9bca04774}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\VisionTools\src\numerics\numerics.vcxproj">
+      <Project>{d6eb28c8-becf-4d01-8b0d-6018bcd5fb1e}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\vtiview\NativeImage\NativeImage.vcxproj">
+      <Project>{3c290e87-a850-44c5-baa5-7a2491054313}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <Import Project="$(NuGetPackages)\Microsoft.VisualStudioEng.MicroBuild.Core.1.0.0\build\Microsoft.VisualStudioEng.MicroBuild.Core.targets" Condition="Exists('$(NuGetPackages)\Microsoft.VisualStudioEng.MicroBuild.Core.1.0.0\build\Microsoft.VisualStudioEng.MicroBuild.Core.targets')" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\contrib\JXRLib\JXRLib.targets" />
+  </ImportGroup>
+</Project>

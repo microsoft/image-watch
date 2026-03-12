@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AutoVisualizer xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010">
+
+  <UIVisualizer ServiceId="{A452AFEA-3DF6-46BB-9177-C0B08F318025}" Id="1" MenuName="Add to Image Watch"/>
+
+  <!-- IPP hppiMatrix class -->
+
+  <Type Name="_hppiMatrix">
+    <UIVisualizer ServiceId="{A452AFEA-3DF6-46BB-9177-C0B08F318025}" Id="1" />
+  </Type>
+
+  <Type Name="_hppiMatrix">
+    <DisplayString Condition="((int*)(this))[0]==0x02">{{UINT8, {((int*)(this))[1]} x {((int*)(this))[2]}}}</DisplayString>
+    <DisplayString Condition="((int*)(this))[0]==0x04">{{INT16, {((int*)(this))[1]} x {((int*)(this))[2]}}}</DisplayString>
+    <DisplayString Condition="((int*)(this))[0]==0x08">{{UINT16, {((int*)(this))[1]} x {((int*)(this))[2]}}}</DisplayString>
+    <DisplayString Condition="((int*)(this))[0]==0x10">{{INT32, {((int*)(this))[1]} x {((int*)(this))[2]}}}</DisplayString>
+    <DisplayString Condition="((int*)(this))[0]==0x40">{{FLOAT32, {((int*)(this))[1]} x {((int*)(this))[2]}}}</DisplayString>
+    <DisplayString Condition="((int*)(this))[0]==0x80">{{FLOAT64, {((int*)(this))[1]} x {((int*)(this))[2]}}}</DisplayString>
+    <DisplayString>{{OTHER, {((int*)(this))[1]} x {((int*)(this))[2]}}}</DisplayString>
+    <Expand>
+      <Synthetic Name="[type]" Condition="((int*)(this))[0]==0x02">
+        <DisplayString>UINT8</DisplayString>
+      </Synthetic>
+      <Synthetic Name="[type]" Condition="((int*)(this))[0]==0x04">
+        <DisplayString>INT16</DisplayString>
+      </Synthetic>
+      <Synthetic Name="[type]" Condition="((int*)(this))[0]==0x08">
+        <DisplayString>UINT16</DisplayString>
+      </Synthetic>
+      <Synthetic Name="[type]" Condition="((int*)(this))[0]==0x10">
+        <DisplayString>INT32</DisplayString>
+      </Synthetic>
+      <Synthetic Name="[type]" Condition="((int*)(this))[0]==0x40">
+        <DisplayString>FLOAT32</DisplayString>
+      </Synthetic>
+      <Synthetic Name="[type]" Condition="((int*)(this))[0]==0x80">
+        <DisplayString>FLOAT64</DisplayString>
+      </Synthetic>      
+      <Synthetic Name="[channels]">
+        <DisplayString>1</DisplayString>
+      </Synthetic>
+      <Item Name="[width]">((int*)(this))[1]</Item>
+      <Item Name="[height]">((int*)(this))[2]</Item>
+      <Item Name="[stride]">((int*)(this))[4 + sizeof(void*)/4]</Item>
+      <Item Name="[data]">(void*)(((int*)(this))[4])</Item>
+    </Expand>
+  </Type>
+
+  <!-- IPP hppiKernel class -->
+
+  <Type Name="_HPPKernel">
+    <UIVisualizer ServiceId="{A452AFEA-3DF6-46BB-9177-C0B08F318025}" Id="1" />
+  </Type>
+
+  <Type Name="_HPPKernel">
+    <DisplayString Condition="((int*)(this))[0]==0x02">{{UINT8, {((int*)(this))[1]} x {((int*)(this))[2]}}}</DisplayString>
+    <DisplayString Condition="((int*)(this))[0]==0x04">{{INT16, {((int*)(this))[1]} x {((int*)(this))[2]}}}</DisplayString>
+    <DisplayString Condition="((int*)(this))[0]==0x08">{{UINT16, {((int*)(this))[1]} x {((int*)(this))[2]}}}</DisplayString>
+    <DisplayString Condition="((int*)(this))[0]==0x10">{{INT32, {((int*)(this))[1]} x {((int*)(this))[2]}}}</DisplayString>
+    <DisplayString Condition="((int*)(this))[0]==0x40">{{FLOAT32, {((int*)(this))[1]} x {((int*)(this))[2]}}}</DisplayString>
+    <DisplayString Condition="((int*)(this))[0]==0x80">{{FLOAT64, {((int*)(this))[1]} x {((int*)(this))[2]}}}</DisplayString>
+    <DisplayString>{{OTHER, {((int*)(this))[1]} x {((int*)(this))[2]}}}</DisplayString>
+    <Expand>
+      <Synthetic Name="[type]" Condition="((int*)(this))[0]==0x02">
+        <DisplayString>UINT8</DisplayString>
+      </Synthetic>
+      <Synthetic Name="[type]" Condition="((int*)(this))[0]==0x04">
+        <DisplayString>INT16</DisplayString>
+      </Synthetic>
+      <Synthetic Name="[type]" Condition="((int*)(this))[0]==0x08">
+        <DisplayString>UINT16</DisplayString>
+      </Synthetic>
+      <Synthetic Name="[type]" Condition="((int*)(this))[0]==0x10">
+        <DisplayString>INT32</DisplayString>
+      </Synthetic>
+      <Synthetic Name="[type]" Condition="((int*)(this))[0]==0x40">
+        <DisplayString>FLOAT32</DisplayString>
+      </Synthetic>
+      <Synthetic Name="[type]" Condition="((int*)(this))[0]==0x80">
+        <DisplayString>FLOAT64</DisplayString>
+      </Synthetic>      
+      <Synthetic Name="[channels]">
+        <DisplayString>1</DisplayString>
+      </Synthetic>
+      <Item Name="[width]">((int*)(this))[1]</Item>
+      <Item Name="[height]">((int*)(this))[2]</Item>
+      <Item Name="[data]">(void*)(((int*)(this))[3])</Item>
+      <Item Name="[stride]" Condition="((int*)(this))[0]==0x02">((int*)(this))[1]</Item>
+      <Item Name="[stride]" Condition="((int*)(this))[0]==0x04">((int*)(this))[1] * 2</Item>
+      <Item Name="[stride]" Condition="((int*)(this))[0]==0x08">((int*)(this))[1] * 2</Item>
+      <Item Name="[stride]" Condition="((int*)(this))[0]==0x10">((int*)(this))[1] * 4</Item>
+      <Item Name="[stride]" Condition="((int*)(this))[0]==0x40">((int*)(this))[1] * 4</Item>
+      <Item Name="[stride]" Condition="((int*)(this))[0]==0x80">((int*)(this))[1] * 8</Item>
+    </Expand>
+  </Type>
+
+  <!-- Image class for IPP Examples -->
+
+  <Type Name="Image">
+    <UIVisualizer ServiceId="{A452AFEA-3DF6-46BB-9177-C0B08F318025}" Id="1" />
+  </Type>
+
+  <Type Name="Image">
+    <DisplayString Condition="m_color==IC_UNKNOWN">{{UNKNOWN FORMAT}}</DisplayString>
+    <DisplayString Condition="m_color==IC_GRAY">{{GRAY, {m_iWidth} x {m_iHeight}}}</DisplayString>
+    <DisplayString Condition="m_color==IC_BGR">{{BGR, {m_iWidth} x {m_iHeight}}}</DisplayString>
+    <DisplayString Condition="m_color==IC_RGB">{{RGB, {m_iWidth} x {m_iHeight}}}</DisplayString>
+    <DisplayString Condition="m_color==IC_BGRA">{{BGRA, {m_iWidth} x {m_iHeight}}}</DisplayString>
+    <DisplayString Condition="m_color==IC_RGBA">{{RGBA, {m_iWidth} x {m_iHeight}}}</DisplayString>
+    <Expand>
+      <Synthetic Name="[type]">
+        <DisplayString>UINT8</DisplayString>
+      </Synthetic>
+      <Synthetic Name="[channels]" Condition="m_color==IC_GRAY">
+        <DisplayString>1</DisplayString>
+      </Synthetic>
+      <Synthetic Name="[channels]" Condition="m_color==IC_BGR">
+        <DisplayString>BGR</DisplayString>
+      </Synthetic>
+      <Synthetic Name="[channels]" Condition="m_color==IC_RGB">
+        <DisplayString>RGB</DisplayString>
+      </Synthetic>
+      <Synthetic Name="[channels]" Condition="m_color==IC_BGRA">
+        <DisplayString>BGRA</DisplayString>
+      </Synthetic>
+      <Synthetic Name="[channels]" Condition="m_color==IC_RGBA">
+        <DisplayString>RGBA</DisplayString>
+      </Synthetic>
+      <Item Name="[width]">m_iWidth</Item>
+      <Item Name="[height]">m_iHeight</Item>
+      <Item Name="[stride]">m_iStep</Item>
+      <Item Name="[data]">m_pPointer</Item>
+    </Expand>
+  </Type>
+
+</AutoVisualizer>

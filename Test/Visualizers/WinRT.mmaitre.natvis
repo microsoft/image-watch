@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AutoVisualizer xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010">
+
+  <!-- WRL smart pointer (modeled after ATL::CComPtr in atlmft.natvis) -->
+  <Type Name="Microsoft::WRL::ComPtr&lt;*&gt;">
+    <DisplayString>{ptr_}</DisplayString>
+    <Expand><ExpandedItem>ptr_</ExpandedItem></Expand>
+  </Type>
+
+  <Type Name="XWinRT::detail::GitStorageType&lt;*&gt;">
+    <DisplayString>{*_pObject}</DisplayString>
+    <Expand>
+      <ExpandedItem>_pObject</ExpandedItem>
+    </Expand>
+  </Type>
+
+  <Type Name="XWinRT::XHashMap&lt;*&gt;">
+    <DisplayString>{m_nElements} elements</DisplayString>
+    <Expand>
+      <Item Name="[size]">m_nElements</Item>
+      <ArrayItems>
+        <Size>m_nBins</Size>
+        <ValuePointer>m_ppBins</ValuePointer>
+      </ArrayItems>
+    </Expand>
+  </Type>
+  
+  <Type Name="Windows::Foundation::Collections::Internal::SimpleVectorView&lt;*&gt;">
+    <DisplayString>{_spVector.ptr_->_uSize} elements</DisplayString>
+    <Expand>
+      <ExpandedItem>_spVector.ptr_</ExpandedItem>
+    </Expand>
+  </Type>
+
+  <Type Name="Windows::Foundation::Value&lt;Windows::Foundation::ValueScalar&lt;*&gt;&gt;">
+    <DisplayString Condition='strcmp("unsigned __int64", "$T1") == 0'>{_value} ({((ULARGE_INTEGER*)&amp;_value)->HighPart}, {((ULARGE_INTEGER*)&amp;_value)->LowPart})</DisplayString>
+    <DisplayString>{_value}</DisplayString>
+    <Expand>
+      <Item Name="[value]">_value</Item>
+    </Expand>
+  </Type>
+
+  <Type Name="DeviceInformationServer">
+    <Version Name="Windows.Devices.Enumeration.dll"/>
+    <DisplayString>{_id}</DisplayString>
+    <Expand>
+      <Item Name="[Id]">_id</Item>
+      <Item Name="[Type]">_type</Item>
+      <ArrayItems>
+        <Size>_properties.ptr_->_propertyCount</Size>
+        <ValuePointer>_properties.ptr_->_properties</ValuePointer>
+      </ArrayItems>
+    </Expand>
+  </Type>
+
+  <Type Name="PropertyInfo">
+    <Version Name="Windows.Devices.Enumeration.dll"/>
+    <DisplayString Condition="_type == 0x11">{{{_keyName} = {!!*(unsigned char*)_buffer}}}</DisplayString> <!--DEVPROP_TYPE_BOOLEAN-->
+    <DisplayString Condition="_type == 0x12">{{{_keyName} = {(wchar_t*)_buffer,su}}}</DisplayString> <!--DEVPROP_TYPE_STRING-->
+    <DisplayString>{{{_keyName}}}</DisplayString>
+    <Expand>
+      <Item Name="[KeyName]">_keyName</Item>
+      <Item Name="[Key]">_key</Item>
+      <Item Name="[Value]" Condition="_type == 0x11">!!*(unsigned char*)_buffer</Item> <!--DEVPROP_TYPE_BOOLEAN-->
+      <Item Name="[Value]" Condition="_type == 0x12">(wchar_t*)_buffer</Item> <!--DEVPROP_TYPE_STRING-->
+      <Synthetic Name="[Value]" Condition="_type == 0x0"><DisplayString>Empty</DisplayString></Synthetic> <!--DEVPROP_TYPE_EMPTY-->
+      <Item Name="[Type]">_type</Item>
+    </Expand>
+  </Type>
+
+  <Type Name="DirectUI::WriteableBitmap">
+    <AlternativeType Name="Windows::UI::Xaml::Media::Imaging::WriteableBitmap"/>
+    <Version Name="Windows.UI.Xaml.dll"/>
+    <DisplayString>Bgra8 {((CWriteableBitmap*)(m_pDO))->m_nWidth}x{((CWriteableBitmap*)(m_pDO))->m_nHeight} stride {4*((CWriteableBitmap*)(m_pDO))->m_nWidth}</DisplayString>
+    <Expand>
+      <Synthetic Name="[type]"><DisplayString>UINT8</DisplayString></Synthetic>
+      <Synthetic Name="[channels]"><DisplayString>BGRA</DisplayString></Synthetic>
+      <Item Name="[stride]">4*((CWriteableBitmap*)(m_pDO))->m_nWidth</Item>
+      <Item Name="[width]">((CWriteableBitmap*)(m_pDO))->m_nWidth</Item>
+      <Item Name="[height]">((CWriteableBitmap*)(m_pDO))->m_nHeight</Item>
+      <Item Name="[data]">(void*)((CWriteableBitmap*)(m_pDO))->m_pPixels</Item>
+    </Expand>
+  </Type>
+
+</AutoVisualizer>

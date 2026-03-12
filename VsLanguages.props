@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+        <Language Include="CHS">
+            <Culture>zh-Hans</Culture>
+            <LCID>2052</LCID>
+        </Language>
+        <Language Include="CHT">
+            <Culture>zh-Hant</Culture>
+            <LCID>1028</LCID>
+        </Language>
+        <Language Include="CSY">
+            <Culture>cs</Culture>
+            <LCID>1029</LCID>
+        </Language>
+        <Language Include="DEU">
+            <Culture>de</Culture>
+            <LCID>1031</LCID>
+        </Language>
+        <Language Include="ENU">
+            <Culture>en</Culture>
+            <LCID>1033</LCID>
+        </Language>
+        <Language Include="ESN">
+            <Culture>es</Culture>
+            <LCID>3082</LCID>
+        </Language>
+        <Language Include="FRA">
+            <Culture>fr</Culture>
+            <LCID>1036</LCID>
+        </Language>
+        <Language Include="ITA">
+            <Culture>it</Culture>
+            <LCID>1040</LCID>
+        </Language>
+        <Language Include="JPN">
+            <Culture>ja</Culture>
+            <LCID>1041</LCID>
+        </Language>
+        <Language Include="KOR">
+            <Culture>ko</Culture>
+            <LCID>1042</LCID>
+        </Language>
+        <Language Include="PLK">
+            <Culture>pl</Culture>
+            <LCID>1045</LCID>
+        </Language>
+        <Language Include="PTB">
+            <Culture>pt-BR</Culture>
+            <LCID>1046</LCID>
+        </Language>
+        <Language Include="RUS">
+            <Culture>ru</Culture>
+            <LCID>1049</LCID>
+        </Language>
+        <Language Include="TRK">
+            <Culture>tr</Culture>
+            <LCID>1055</LCID>
+        </Language>
+    </ItemGroup>
+  </Project>

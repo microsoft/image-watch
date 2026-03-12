@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="mathutils.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_complex.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_mathutils.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_matrix.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_matrix2x2.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_matrix3x3.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_matrix4x4.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_round.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="vt_mathutils.inl">
+      <Filter>Headers</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{48ffdd1f-8ca5-4e57-a778-39469ffbd69e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources">
+      <UniqueIdentifier>{6a75553f-b647-472b-8ae2-dffeb45c889b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

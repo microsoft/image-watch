@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="addressgen.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="warp_special.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="bicubicbspline.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="convert.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="exifmap.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="fileblobstore.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="function.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="image.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="imagecache.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="imgdist.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="imgmath.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="kernel.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="layer.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="memstream.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="pad.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="params.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="pyramid.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="rotate.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="separablefilter.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="separablefilter121.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="stats.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="taskmanager.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="transform.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="utils.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="vtiio.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="warp.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="resize.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="imgdbg.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="separablefilterbox.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="separablefilter14641.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="vt_addressgen.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_warp.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_atltypes.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_bicubicbspline.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_blobstore.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_convert.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_exifmap.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_extend.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_fileblobstore.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_function.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_image.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_imagecache.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_imgdbg.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_imgdist.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_imgmath.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_kernel.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_layer.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_memstream.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_pad.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_params.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_pixeliterators.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_pyramid.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_readerwriter.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_rotate.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_separablefilter.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_singleton.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_stats.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_taskmanager.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_transform.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_utils.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vtiio.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="warp_special_sse.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="warp_special_neon.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="warp_sse.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="x86\separablefilter121_sse.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="arm\separablefilter121_neon.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="warp_simd.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_median.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="vt_convert.inl">
+      <Filter>Headers</Filter>
+    </None>
+    <None Include="vt_imgmath.inl">
+      <Filter>Headers</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Sources">
+      <UniqueIdentifier>{6a7dc55f-979a-4236-b9ed-b57523938338}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{572c5ff4-fb34-4cc7-b82a-93fe852cdded}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="converttest.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="cthelpers.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="cachetest.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="coretest.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="filtertest.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="mathtest.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="perftest.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="statstest.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="warptest.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="cthelpers.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="perftest.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="WinUnitAdaptors.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{b4093f83-c249-4b3b-bd67-9313b41f40d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources">
+      <UniqueIdentifier>{6abe9ae4-5521-436f-9b56-8a42728634f2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

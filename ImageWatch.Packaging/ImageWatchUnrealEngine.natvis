@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<AutoVisualizer xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010"> 
+  <UIVisualizer ServiceId="{A452AFEA-3DF6-46BB-9177-C0B08F318025}" Id="1"  
+                MenuName="Add to Image Watch"/> 
+  
+  <!--
+  The following adds support for Unreal Engine's FImage type.
+  FImage uses following formats:
+  
+  namespace ERawImageFormat
+  {
+    /**
+     * Enumerates supported raw image formats.
+     * should map one-to-one with ETextureSourceFormat
+     */
+    enum Type : uint8
+    {
+      G8,
+      BGRA8,   // FColor
+      BGRE8,
+      RGBA16,
+      RGBA16F, // FFloat16Color
+      RGBA32F, // FLinearColor
+      G16,     // note G8/G16 = gray = replicate to 3 channels, R16F = just in red channel
+      R16F,
+      R32F,
+      Invalid = 0xFF
+    };
+  -->
+  <Type Name="FImage"> 
+    <UIVisualizer ServiceId="{A452AFEA-3DF6-46BB-9177-C0B08F318025}" Id="1" /> 
+  </Type> 
+  <Type Name="FImage"> 
+    <Expand>
+      <!--CHANNEL TYPE-->
+      <Synthetic Name="[type]" Condition="Format==0"> 
+        <DisplayString>UINT8</DisplayString> 
+      </Synthetic>
+      <Synthetic Name="[type]" Condition="Format==1">
+        <DisplayString>UINT8</DisplayString>
+      </Synthetic>
+      <Synthetic Name="[type]" Condition="Format==2">
+        <DisplayString>UINT8</DisplayString>
+      </Synthetic>
+      <Synthetic Name="[type]" Condition="Format==3">
+        <DisplayString>UINT16</DisplayString>
+      </Synthetic>
+      <Synthetic Name="[type]" Condition="Format==4">
+        <DisplayString>FLOAT16</DisplayString>
+      </Synthetic>
+      <Synthetic Name="[type]" Condition="Format==5">
+        <DisplayString>FLOAT32</DisplayString>
+      </Synthetic>
+      <Synthetic Name="[type]" Condition="Format==6">
+        <DisplayString>UINT16</DisplayString>
+      </Synthetic>
+      <Synthetic Name="[type]" Condition="Format==7">
+        <DisplayString>FLOAT16</DisplayString>
+      </Synthetic>
+      <Synthetic Name="[type]" Condition="Format==8">
+        <DisplayString>FLOAT32</DisplayString>
+      </Synthetic>
+
+      <!--CHANNEL LAYOUT-->
+      <Synthetic Name="[channels]" Condition="Format==0">
+        <DisplayString>1</DisplayString>
+      </Synthetic>
+      <Synthetic Name="[channels]" Condition="Format==1"> 
+        <DisplayString>BGRA</DisplayString> 
+      </Synthetic>
+      <Synthetic Name="[channels]" Condition="Format==2">
+        <DisplayString>BGRA</DisplayString>
+      </Synthetic>
+      <Synthetic Name="[channels]" Condition="Format==3">
+        <DisplayString>RGBA</DisplayString>
+      </Synthetic>
+      <Synthetic Name="[channels]" Condition="Format==4">
+        <DisplayString>RGBA</DisplayString>
+      </Synthetic>
+      <Synthetic Name="[channels]" Condition="Format==5">
+        <DisplayString>RGBA</DisplayString>
+      </Synthetic>
+      <Synthetic Name="[channels]" Condition="Format==6">
+        <DisplayString>1</DisplayString>
+      </Synthetic>
+      <Synthetic Name="[channels]" Condition="Format==7">
+        <DisplayString>1</DisplayString>
+      </Synthetic>
+      <Synthetic Name="[channels]" Condition="Format==8">
+        <DisplayString>1</DisplayString>
+      </Synthetic>
+
+      <!--DIRECT VALUES-->
+      <Item Name="[width]">SizeX</Item> 
+      <Item Name="[height]">SizeY</Item> 
+      <Item Name="[data]">RawData.AllocatorInstance.Data</Item>
+
+      <!--CALCULATED VALUE-->
+      <!--
+      stride == row width, in bytes
+      stride := channel count * channel size * number of pixels in a row
+      -->
+      <Item Name="[stride]" Condition="Format==0">SizeX</Item>
+      <Item Name="[stride]" Condition="Format==1">SizeX*4</Item>
+      <Item Name="[stride]" Condition="Format==2">SizeX*4</Item>
+      <Item Name="[stride]" Condition="Format==3">SizeX*8</Item>
+      <Item Name="[stride]" Condition="Format==4">SizeX*8</Item>
+      <Item Name="[stride]" Condition="Format==5">SizeX*16</Item>
+      <Item Name="[stride]" Condition="Format==6">SizeX*2</Item>
+      <Item Name="[stride]" Condition="Format==7">SizeX*2</Item>
+      <Item Name="[stride]" Condition="Format==8">SizeX*4</Item>
+    </Expand>
+  </Type>
+</AutoVisualizer>

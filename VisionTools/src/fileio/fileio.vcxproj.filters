@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="wicio.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="global.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="VtIOFuncs.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="PPMio.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_global.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_io.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_iointerfaces.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="wicio.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="PPMio.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{040c1bd3-4b80-49e4-9869-04bc89495e7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources">
+      <UniqueIdentifier>{f61c8d5a-c3f7-4c03-90a8-bf1145bf3fa8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

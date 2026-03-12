@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="dbg.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="error.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="memory.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="cpudetect.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="system.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="vt_basetypes.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_vector.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_cpudetect.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_dbg.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_error.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_intrinsics.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_memory.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_minwin.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_new.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_simdreg.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_string.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vt_system.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SSEonNeon.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Sources">
+      <UniqueIdentifier>{a7f0542b-f042-4264-a9ab-8c3545d558e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{cae44d93-52fd-4f33-ace0-4d2c35da7426}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="amd64\cpuid_x64asm.asm" />
+  </ItemGroup>
+</Project>

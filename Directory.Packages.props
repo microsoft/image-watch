@@ -1,0 +1,11 @@
+<Project>
+  <ItemGroup>
+    <PackageVersion Include="Microsoft.VisualStudio.Debugger.Engine" Version="17.0.3041101" />
+    <PackageVersion Include="Microsoft.VisualStudio.SDK" Version="17.2.32505.173" />
+    <PackageVersion Include="Microsoft.VSSDK.BuildTools" Version="17.0.5240" />
+    <PackageVersion Include="MessagePack" Version="2.5.187" />
+  </ItemGroup>
+  <PropertyGroup>
+    <CentralPackageTransitivePinningEnabled>false</CentralPackageTransitivePinningEnabled>
+  </PropertyGroup>
+</Project>

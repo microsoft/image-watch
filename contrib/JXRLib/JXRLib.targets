@@ -1,0 +1,15 @@
+<Project  xmlns="http://schemas.microsoft.com/developer/msbuild/2003" >
+
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)common/include;$(MSBuildThisFileDirectory)image/sys;$(MSBuildThisFileDirectory)jxrgluelib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+
+  <ItemDefinitionGroup>
+    <Link>
+      <AdditionalDependencies>$(MSBuildThisFileDirectory)image/projects/$(Platform)/$(Configuration)/JXRCommonLib/JXRCommonLib.lib;$(MSBuildThisFileDirectory)image/projects/$(Platform)/$(Configuration)/JXRDecodeLib/JXRDecodeLib.lib;$(MSBuildThisFileDirectory)image/projects/$(Platform)/$(Configuration)/JXREncodeLib/JXREncodeLib.lib;$(MSBuildThisFileDirectory)jxrgluelib/$(Platform)/$(Configuration)/JXRGlueLib/JXRGlueLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+
+</Project>

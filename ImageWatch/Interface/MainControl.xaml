@@ -1,0 +1,108 @@
+﻿<UserControl x:Class="Microsoft.ImageWatch.Interface.MainControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:resx="clr-namespace:Microsoft.ImageWatch"
+             xmlns:my="clr-namespace:Microsoft.ImageWatch.Interface"
+             xmlns:vsui="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Shell.15.0"
+             Background="{DynamicResource VsBrush.Window}"
+             Foreground="{DynamicResource VsBrush.WindowText}"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="561.679">
+    <UserControl.Resources>
+        <my:NegatingConverter x:Key="NegatingConverter"></my:NegatingConverter>
+        <my:NullOrEmptyToVisibilityConverter x:Key="NullOrEmptyToVisibilityConverter"/>
+        <my:NegatingNullOrEmptyToVisibilityConverter x:Key="NegatingNullOrEmptyToVisibilityConverter"/>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <SolidColorBrush x:Key="ImageViewBackground">
+            <SolidColorBrush.Color>
+                <Color>LightGray</Color>
+            </SolidColorBrush.Color>
+        </SolidColorBrush>
+    </UserControl.Resources>
+    <Grid>
+        <TextBlock Text="{Binding Path=ErrorState}" Margin="4,2,4,2" Visibility="{Binding Path=ErrorState, Converter={StaticResource NullOrEmptyToVisibilityConverter}}"></TextBlock>
+        <Grid Visibility="{Binding Path=ErrorState, Converter={StaticResource NegatingNullOrEmptyToVisibilityConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="240"/>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Border BorderThickness="0,0,0,1" BorderBrush="{DynamicResource VsBrush.PanelBorder}"
+                            MinWidth="200">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition MinWidth="150"></ColumnDefinition>
+                                <ColumnDefinition MinWidth="30"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0" Orientation="Vertical">
+                                <RadioButton Name="localsRadio" VerticalAlignment="Center" Margin="3,3,0,0" Focusable="False" 
+                                             IsChecked="{Binding Path=LocalsSelected}" Foreground="{DynamicResource VsBrush.WindowText}"
+                                             Content="{x:Static resx:Resources.LocalsRadioButton}" />
+                                <RadioButton Name="watchRadio" VerticalAlignment="Center" Margin="3,3,0,3" Focusable="False"
+                                             IsChecked="{Binding Path=LocalsSelected, Converter={StaticResource NegatingConverter}}"
+                                             Foreground="{DynamicResource VsBrush.WindowText}" Content="{x:Static resx:Resources.WatchRadioButton}" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" HorizontalAlignment="Right">
+                                <Button Margin="4,2,4,2" Content="{x:Static resx:Resources.HelpButton}" Cursor="Hand" Click="HelpButton_Click" Focusable="False">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <TextBlock>
+                                                <ContentPresenter />
+                                            </TextBlock>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Setter Property="Foreground" Value="{DynamicResource {x:Static vsui:EnvironmentColors.CommandBarMenuLinkTextBrushKey}}" />
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Foreground" Value="{DynamicResource {x:Static vsui:EnvironmentColors.CommandBarMenuLinkTextHoverBrushKey}}" />
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </Grid>
+                <my:WatchList Grid.Row="1" x:Name="localsListControl" UserCanModify="False" Visibility="{Binding ElementName=localsRadio, 
+                Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                <my:WatchList Grid.Row="1" x:Name="watchListControl" UserCanModify="True" Visibility="{Binding ElementName=watchRadio, 
+                Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}"/>                
+            </Grid>
+            <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2">
+                <my:ImageViewer x:Name="viewer">
+                </my:ImageViewer>
+            </Grid>
+            <!-- NOTE: gridsplitter is WIDE but transparent, and ON TOP OF (=declared after) viewer. It's only visual is tiny left border.
+        -> that way, it doesnt take up space but can be grabbed easily -->
+            <GridSplitter Grid.Column="1"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Stretch"
+              Background="Transparent" 
+              BorderBrush="{DynamicResource VsBrush.PanelBorder}"
+              BorderThickness="1,0,0,0"
+              ShowsPreview="True"
+              Width="4"
+              Focusable="False"/>
+            <Rectangle Grid.ColumnSpan="3" Grid.RowSpan="3" Fill="{DynamicResource VsBrush.AccentPale}"
+            Visibility="{Binding Path=IsVSOutOfBreakModeForLonger, Mode=OneWay,
+            Converter={StaticResource BooleanToVisibilityConverter}}"
+                   Opacity="0.5"
+                   Focusable="False"/>
+        </Grid>
+    </Grid>
+    <UserControl.IsHitTestVisible>
+        <Binding Path="IsVSInBreakMode" Mode="OneWay"/>
+    </UserControl.IsHitTestVisible>
+</UserControl>

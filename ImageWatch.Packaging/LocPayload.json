@@ -1,0 +1,96 @@
+{
+  "DateTime": "0001-01-01T00:00:00",
+  "BuildSystem": "Microbuild V2",
+  "SourceControl": {
+    "Type": "TfsGit",
+    "Url": "https://devdiv.visualstudio.com/DevDiv/_git/VCLS-Extensions",
+    "Branch": "dev17",
+    "Repository": "VCLS-Extensions"
+  },
+  "LanguageSets": [],
+  "CloneLanguageSets": [],
+  "Projects": [
+    {
+      "Name": "ImageWatch.Packaging",
+      "Path": "ImageWatch\\ImageWatch.Packaging\\ImageWatch.Packaging.csproj",
+      "LocItems": [
+        {
+          "SourceFile": "drop\\extension.vsixlangpack",
+          "LclFile": "loc\\lcl\\{Lang}\\extension.vsixlangpack.lcl",
+          "LcgFile": "drop\\localize\\ENU\\extension.vsixlangpack.lcg",
+          "LssFiles": [
+            "ImageWatch\\ImageWatch.Packaging\\P210IncTermNoResId.lss"
+          ],
+          "Languages": "CHS;CHT;CSY;DEU;ESN;FRA;ITA;JPN;KOR;PLK;PTB;RUS;TRK",
+          "CopyOption": "None"
+        },
+        {
+          "SourceFile": "drop\\ImageWatchOpenCV.natvis",
+          "LclFile": "loc\\lcl\\{Lang}\\ImageWatchOpenCV.natvis.lcl",
+          "LcgFile": "drop\\localize\\ENU\\LocalizeNatVis\\ImageWatchOpenCV.natvis.lcg",
+          "LssFiles": [
+            "ImageWatch\\ImageWatch.Packaging\\P210IncTermNoResId.lss"
+          ],
+          "Languages": "CHS;CHT;CSY;DEU;ESN;FRA;ITA;JPN;KOR;PLK;PTB;RUS;TRK",
+          "CopyOption": "None"
+        },
+        {
+          "SourceFile": "drop\\ImageWatchWinRT.natvis",
+          "LclFile": "loc\\lcl\\{Lang}\\ImageWatchWinRT.natvis.lcl",
+          "LcgFile": "drop\\localize\\ENU\\LocalizeNatVis\\ImageWatchWinRT.natvis.lcg",
+          "LssFiles": [
+            "ImageWatch\\ImageWatch.Packaging\\P210IncTermNoResId.lss"
+          ],
+          "Languages": "CHS;CHT;CSY;DEU;ESN;FRA;ITA;JPN;KOR;PLK;PTB;RUS;TRK",
+          "CopyOption": "None"
+        },
+        {
+          "SourceFile": "drop\\ImageWatchWinMedia.natvis",
+          "LclFile": "loc\\lcl\\{Lang}\\ImageWatchWinMedia.natvis.lcl",
+          "LcgFile": "drop\\localize\\ENU\\LocalizeNatVis\\ImageWatchWinMedia.natvis.lcg",
+          "LssFiles": [
+            "ImageWatch\\ImageWatch.Packaging\\P210IncTermNoResId.lss"
+          ],
+          "Languages": "CHS;CHT;CSY;DEU;ESN;FRA;ITA;JPN;KOR;PLK;PTB;RUS;TRK",
+          "CopyOption": "None"
+        },
+        {
+          "SourceFile": "drop\\ImageWatchUnrealEngine.natvis",
+          "LclFile": "loc\\lcl\\{Lang}\\ImageWatchUnrealEngine.natvis.lcl",
+          "LcgFile": "drop\\localize\\ENU\\LocalizeNatVis\\ImageWatchUnrealEngine.natvis.lcg",
+          "LssFiles": [
+            "ImageWatch\\ImageWatch.Packaging\\P210IncTermNoResId.lss"
+          ],
+          "Languages": "CHS;CHT;CSY;DEU;ESN;FRA;ITA;JPN;KOR;PLK;PTB;RUS;TRK",
+          "CopyOption": "None"
+        },
+        {
+          "SourceFile": "drop\\ImageWatch.dll",
+          "LclFile": "loc\\lcl\\{Lang}\\ImageWatch.dll.lcl",
+          "LcgFile": "localize\\ENU\\ImageWatch.dll.lcg",
+          "LssFiles": [
+            "MCP_excludeBaml.lss"
+          ],
+          "Languages": "CHS;CHT;CSY;DEU;ESN;FRA;ITA;JPN;KOR;PLK;PTB;RUS;TRK",
+          "CopyOption": "None"
+        }
+      ],
+      "LssFiles": []
+    }
+  ],
+  "LanguageFolderMappings": {
+    "CHS": "zh-CN",
+    "CHT": "zh-TW",
+    "CSY": "cs-CZ",
+    "DEU": "de-DE",
+    "ESN": "es-ES",
+    "FRA": "fr-FR",
+    "ITA": "it-IT",
+    "JPN": "ja-JP",
+    "KOR": "ko-KR",
+    "PLK": "pl-PL",
+    "PTB": "pt-BR",
+    "RUS": "ru-RU",
+    "TRK": "tr-TR"
+  }
+}

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AutoVisualizer xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010">
+
+  <UIVisualizer ServiceId="{A452AFEA-3DF6-46BB-9177-C0B08F318025}" Id="1"
+                MenuName="Add to Image Watch"/>
+
+  <Type Name="MyImage">
+    <UIVisualizer ServiceId="{A452AFEA-3DF6-46BB-9177-C0B08F318025}" Id="1" />
+  </Type>
+
+  <Type Name="MyImage">
+  <DisplayString>{{...}}</DisplayString>
+    <Expand>
+      <Item Name="[width]">ncols</Item>
+      <Item Name="[height]">nrows</Item>      
+      <Item Name="[data]">pixels._Myfirst</Item>      
+      
+	  <Synthetic Name="[type]">
+        <DisplayString>UINT8</DisplayString>
+      </Synthetic>
+      <Synthetic Name="[channels]">
+        <DisplayString>BGRA</DisplayString>
+      </Synthetic>
+      <Item Name="[stride]">ncols * 4</Item>
+    </Expand>
+  </Type>
+  
+  
+  <Type Name="TComPicYuv">
+    <UIVisualizer ServiceId="{A452AFEA-3DF6-46BB-9177-C0B08F318025}" Id="1" />
+  </Type>
+  
+  <Type Name="TComPicYuv">
+<Expand>
+
+   <Synthetic Name="[type]">
+      <DisplayString>UINT16</DisplayString>
+   </Synthetic>
+
+   <Synthetic Name="[channels]">
+      <DisplayString>IYUV</DisplayString>
+   </Synthetic>
+			
+   <Item Name="[width]">m_iPicWidth</Item>
+   <Item Name="[height]">m_iPicHeight</Item>
+   <Item Name="[planes]">3</Item>
+   
+   <Synthetic Name="[data]">
+      <DisplayString>{(void*)m_piPicOrgY};{(void*)m_piPicOrgU};{(void*)m_piPicOrgV}</DisplayString>
+   </Synthetic>   
+   <Synthetic Name="[stride]">
+      <DisplayString>{2*m_iPicWidth}; {2*m_iPicWidth}; {2*m_iPicWidth}</DisplayString>
+   </Synthetic>
+   
+</Expand>
+</Type> 
+
+  
+</AutoVisualizer>

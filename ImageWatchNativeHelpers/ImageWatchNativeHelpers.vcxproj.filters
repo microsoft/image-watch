@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Operators">
+      <UniqueIdentifier>{8cf5edc8-8b45-4c07-ac47-be0cf1de7b28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Images">
+      <UniqueIdentifier>{d068abd3-af90-4539-9019-ddd4ac49f235}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Images">
+      <UniqueIdentifier>{b3e4338f-394d-4e52-8c4e-0f18248187ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Operators">
+      <UniqueIdentifier>{88cae9a6-1901-4cbc-b0dc-db83d8228071}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UserImage">
+      <UniqueIdentifier>{af06669f-e5e9-4607-8545-1e1a2a814775}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UserImage">
+      <UniqueIdentifier>{9b77455c-91b9-4aa2-967b-af0c8921e35f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Args">
+      <UniqueIdentifier>{551c1060-970e-42c2-9106-2d5d84e55a60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Args">
+      <UniqueIdentifier>{4fcc878e-dbf8-40a0-a9d2-da7f1280f232}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="WatchedImage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WatchedImageHelpers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WatchedImageImage.h">
+      <Filter>Header Files\Images</Filter>
+    </ClInclude>
+    <ClInclude Include="WatchedImageBandOp.h">
+      <Filter>Header Files\Operators</Filter>
+    </ClInclude>
+    <ClInclude Include="WatchedImageOperator.h">
+      <Filter>Header Files\Operators</Filter>
+    </ClInclude>
+    <ClInclude Include="WatchedImageUnaryOp.h">
+      <Filter>Header Files\Operators</Filter>
+    </ClInclude>
+    <ClInclude Include="WatchedImageClampOp.h">
+      <Filter>Header Files\Operators</Filter>
+    </ClInclude>
+    <ClInclude Include="WatchedImageScaleOp.h">
+      <Filter>Header Files\Operators</Filter>
+    </ClInclude>
+    <ClInclude Include="WatchedImageAbsOp.h">
+      <Filter>Header Files\Operators</Filter>
+    </ClInclude>
+    <ClInclude Include="WatchedImageFileOp.h">
+      <Filter>Header Files\Operators</Filter>
+    </ClInclude>
+    <ClInclude Include="WatchedImageBinaryOp.h">
+      <Filter>Header Files\Operators</Filter>
+    </ClInclude>
+    <ClInclude Include="WatchedImageDiffOp.h">
+      <Filter>Header Files\Operators</Filter>
+    </ClInclude>
+    <ClInclude Include="WatchedImageScaleOpBase.h">
+      <Filter>Header Files\Operators</Filter>
+    </ClInclude>
+    <ClInclude Include="WatchedImageNormOp.h">
+      <Filter>Header Files\Operators</Filter>
+    </ClInclude>
+    <ClInclude Include="WatchedImageThreshOp.h">
+      <Filter>Header Files\Operators</Filter>
+    </ClInclude>
+    <ClInclude Include="WatchedImageUserImage.h">
+      <Filter>Header Files\UserImage</Filter>
+    </ClInclude>
+    <ClInclude Include="WatchedImageVTCImgInCache.h">
+      <Filter>Header Files\Images</Filter>
+    </ClInclude>
+    <ClInclude Include="WatchedImageD3D11Resource.h">
+      <Filter>Header Files\Images</Filter>
+    </ClInclude>
+    <ClInclude Include="WatchedImagePtrOp.h">
+      <Filter>Header Files\Operators</Filter>
+    </ClInclude>
+    <ClInclude Include="WatchedImageFlipOpBase.h">
+      <Filter>Header Files\Operators</Filter>
+    </ClInclude>
+    <ClInclude Include="WatchedImageFlipOps.h">
+      <Filter>Header Files\Operators</Filter>
+    </ClInclude>
+    <ClInclude Include="ElFormatStringArg.h">
+      <Filter>Header Files\Args</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AssemblyInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WatchedImage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WatchedImageHelpers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WatchedImageImage.cpp">
+      <Filter>Source Files\Images</Filter>
+    </ClCompile>
+    <ClCompile Include="WatchedImageBandOp.cpp">
+      <Filter>Source Files\Operators</Filter>
+    </ClCompile>
+    <ClCompile Include="WatchedImageOperator.cpp">
+      <Filter>Source Files\Operators</Filter>
+    </ClCompile>
+    <ClCompile Include="WatchedImageUnaryOp.cpp">
+      <Filter>Source Files\Operators</Filter>
+    </ClCompile>
+    <ClCompile Include="WatchedImageClampOp.cpp">
+      <Filter>Source Files\Operators</Filter>
+    </ClCompile>
+    <ClCompile Include="WatchedImageScaleOp.cpp">
+      <Filter>Source Files\Operators</Filter>
+    </ClCompile>
+    <ClCompile Include="WatchedImageAbsOp.cpp">
+      <Filter>Source Files\Operators</Filter>
+    </ClCompile>
+    <ClCompile Include="WatchedImageFileOp.cpp">
+      <Filter>Source Files\Operators</Filter>
+    </ClCompile>
+    <ClCompile Include="WatchedImageBinaryOp.cpp">
+      <Filter>Source Files\Operators</Filter>
+    </ClCompile>
+    <ClCompile Include="WatchedImageDiffOp.cpp">
+      <Filter>Source Files\Operators</Filter>
+    </ClCompile>
+    <ClCompile Include="WatchedImageScaleOpBase.cpp">
+      <Filter>Source Files\Operators</Filter>
+    </ClCompile>
+    <ClCompile Include="WatchedImageNormOp.cpp">
+      <Filter>Source Files\Operators</Filter>
+    </ClCompile>
+    <ClCompile Include="WatchedImageThreshOp.cpp">
+      <Filter>Source Files\Operators</Filter>
+    </ClCompile>
+    <ClCompile Include="WatchedImageUserImage.cpp">
+      <Filter>Source Files\UserImage</Filter>
+    </ClCompile>
+    <ClCompile Include="WatchedImageVTCImgInCache.cpp">
+      <Filter>Source Files\Images</Filter>
+    </ClCompile>
+    <ClCompile Include="WatchedImageD3D11Resource.cpp">
+      <Filter>Source Files\Images</Filter>
+    </ClCompile>
+    <ClCompile Include="WatchedImagePtrOp.cpp">
+      <Filter>Source Files\Operators</Filter>
+    </ClCompile>
+    <ClCompile Include="WatchedImageFlipOpBase.cpp">
+      <Filter>Source Files\Operators</Filter>
+    </ClCompile>
+    <ClCompile Include="WatchedImageFlipOps.cpp">
+      <Filter>Source Files\Operators</Filter>
+    </ClCompile>
+    <ClCompile Include="ElFormatStringArg.cpp">
+      <Filter>Source Files\Args</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>

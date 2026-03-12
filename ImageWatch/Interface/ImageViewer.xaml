@@ -1,0 +1,132 @@
+﻿<UserControl x:Class="Microsoft.ImageWatch.Interface.ImageViewer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:my="clr-namespace:Microsoft.ImageWatch.Interface" 
+             xmlns:resx="clr-namespace:Microsoft.ImageWatch"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             Focusable="False">
+    <UserControl.Resources>
+        <my:NullToBooleanConverter x:Key="NullToBooleanConverter"/>
+        <my:AndConverter x:Key="AndConverter"/>
+    </UserControl.Resources>
+    <Grid ContextMenuOpening="ContextMenu_Opening" ContextMenuClosing="ContextMenu_Closing">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Name="viewStatus">
+            <Border BorderThickness="0,0,0,1" BorderBrush="{DynamicResource VsBrush.PanelBorder}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="55"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+					<Grid.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="FontFamily" Value="Consolas"></Setter>
+                        </Style>
+                    </Grid.Resources>
+                    <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"
+                        Name="statusText" TextTrimming="CharacterEllipsis" Margin="5,0,0,0"/>                    
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,4,0"
+                        Focusable="False" Name="zoomText"></TextBlock>
+                </Grid>
+            </Border>
+        </Grid>
+        <Border Grid.Row="1" BorderBrush="{DynamicResource ImageViewBackground}" SnapsToDevicePixels="True"
+                BorderThickness="2,1,2,1">
+            <Canvas Name="canvas" Background="{DynamicResource ImageViewBackground}" SnapsToDevicePixels="True">
+                <Image Name="viewImage" Stretch="Uniform" Source="{Binding Path=View, Mode=OneWay}" 
+                 SnapsToDevicePixels="True" Focusable="False"                 
+                 MouseWheel="viewImage_MouseWheel"
+                 MouseLeftButtonDown="viewImage_MouseLeftButtonDown"
+                 MouseLeftButtonUp="viewImage_MouseLeftButtonUp"
+                 MouseRightButtonDown="viewImage_MouseRightButtonDown"
+                 MouseMove="viewImage_MouseMove"
+                 MouseLeave="viewImage_MouseLeave"
+                 LostMouseCapture="viewImage_LostMouseCapture"/>
+
+                <my:PixelValueGrid x:Name="valueGrid"/>                
+                
+                <my:PixelToolTip x:Name="pixelToolTip" AllowsTransparency="True" Opened="pixelToolTip_Opened" 
+                                 Placement="Mouse">
+                    <Border BorderThickness="1" BorderBrush="{DynamicResource VsBrush.AccentBorder}" 
+                            Background="{DynamicResource VsBrush.Menu}">
+                        <Grid x:Name="pixelToolTipGrid" Margin="4,2,4,2">
+                            <Grid.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Foreground" Value="{DynamicResource VsBrush.MenuText}"></Setter>
+                                    <Setter Property="FontFamily" Value="Consolas"></Setter>
+                                </Style>
+                            </Grid.Resources>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="15"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                        </Grid>                        
+                    </Border>
+                </my:PixelToolTip>
+            </Canvas>
+        </Border>
+        <TextBlock Grid.Row="1" Name="bitmapInfo" HorizontalAlignment="Center" VerticalAlignment="Center" Focusable="False"
+                   Foreground="Gray" />
+        <Grid.ContextMenu>
+            <ContextMenu Name="viewContextMenu">
+                <MenuItem Header="{x:Static resx:Resources.ZoomToFitMenuItem}" Click="ContextMenu_ZoomToFitClick"
+                          DataContext="{Binding Path=PlacementTarget, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}">
+                    <MenuItem.IsEnabled>
+                        <MultiBinding Converter="{StaticResource AndConverter}">
+                            <Binding Path="DataContext"/>
+                            <Binding Path="DataContext.View"/>
+                        </MultiBinding>
+                    </MenuItem.IsEnabled>
+                </MenuItem>
+                <MenuItem Header="{x:Static resx:Resources.ZoomToOriginalSizeMenuItem}" Click="ContextMenu_ZoomToOriginalSizeClick"
+                          DataContext="{Binding Path=PlacementTarget, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}">
+                    <MenuItem.IsEnabled>
+                        <MultiBinding Converter="{StaticResource AndConverter}">
+                            <Binding Path="DataContext"/>
+                            <Binding Path="DataContext.View"/>
+                        </MultiBinding>
+                    </MenuItem.IsEnabled>
+                </MenuItem>
+                <MenuItem Header="{x:Static resx:Resources.LinkViewsMenuItem}" IsCheckable="True" Checked="ContextMenu_LinkViewsChecked" Unchecked="ContextMenu_LinkViewsUnchecked"
+                          DataContext="{Binding Path=PlacementTarget, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}"
+                          IsEnabled="True"/>
+                <Separator/>
+                <MenuItem Name="maximizeContrastCheck" Header="{x:Static resx:Resources.ContextMenuAutoMaximizeText}" IsCheckable="True" Checked="ContextMenu_AutoMaximizeChecked" Unchecked="ContextMenu_AutoMaximizeUnchecked"/>
+                <MenuItem Name="pseudoColorCheck" Header="{x:Static resx:Resources.ContextMenuColormapJetText}" IsCheckable="True" Checked="ContextMenu_ColormapJetChecked" Unchecked="ContextMenu_ColormapJetUnchecked"/>
+                <MenuItem Name="alphaColorCheck" Header="{x:Static resx:Resources.ContextMenuFourChannelIgnoreAlphaText}" IsCheckable="True" Checked="ContextMenu_FourChannelIgnoreAlphaChecked" Unchecked="ContextMenu_FourChannelIgnoreAlphaUnchecked"/>
+                <Separator/>
+                <MenuItem Name="hexDisplay" Header="{x:Static resx:Resources.HexadecimalDisplayMenuItem}" IsCheckable="True" Checked="ContextMenu_HexDisplayChecked" Unchecked="ContextMenu_HexDisplayUnchecked"
+                          DataContext="{Binding Path=PlacementTarget, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}">
+                    <MenuItem.IsEnabled>
+                        True
+                        <!--
+                        <MultiBinding Converter="{StaticResource AndConverter}">
+                            <Binding Path="DataContext.View"/>
+                            <Binding Path="DataContext.ImageHasNativePixelValues"/>
+                        </MultiBinding>-->
+                    </MenuItem.IsEnabled>
+                </MenuItem>
+                <Separator/>
+                <MenuItem Header="{x:Static resx:Resources.CopyPixelAddressMenuItem}" Click="ContextMenu_CopyPixelAddressClick"
+                          DataContext="{Binding Path=PlacementTarget, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}">
+                    <MenuItem.IsEnabled>
+                        <MultiBinding Converter="{StaticResource AndConverter}">
+                            <Binding Path="DataContext.View"/>
+                            <Binding Path="DataContext.ImageHasNativePixelAddress"/>
+                        </MultiBinding>
+                    </MenuItem.IsEnabled>
+                </MenuItem>
+            </ContextMenu>            
+        </Grid.ContextMenu>
+    </Grid>
+</UserControl>

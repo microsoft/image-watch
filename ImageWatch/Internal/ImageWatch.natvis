@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AutoVisualizer xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010">
+  
+  <UIVisualizer ServiceId="{A452AFEA-3DF6-46BB-9177-C0B08F318025}" Id="1" MenuName="Add to Image Watch"/>
+
+  <!-- This file lists all image types that are NOT natvis types, but have custom implmentations 
+  (inside Image Watch dll). List custom types here to add the magnifying glass symbol to the 
+  the VS UI (in autos/locals/watch/datatip). -->
+  
+  <Type Name="vt::CImgInCache">
+    <AlternativeType Name="vt::CTypedImgInCache&lt;*&gt;" />
+    <AlternativeType Name="vt::CCompositeImgInCache&lt;*&gt;" />
+    <UIVisualizer ServiceId="{A452AFEA-3DF6-46BB-9177-C0B08F318025}" Id="1" />
+  </Type>
+
+  <Type Name="ID3D11Resource">
+    <AlternativeType Name="ID3D11Texture2D"/>
+    <Version Name="d3d11.dll"/>
+    <UIVisualizer ServiceId="{A452AFEA-3DF6-46BB-9177-C0B08F318025}" Id="1" />
+  </Type>
+  
+</AutoVisualizer>

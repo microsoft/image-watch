@@ -1,0 +1,261 @@
+﻿<UserControl x:Class="Microsoft.ImageWatch.Interface.WatchList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:my="clr-namespace:Microsoft.ImageWatch.Interface" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:resx="clr-namespace:Microsoft.ImageWatch"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             Focusable="False">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <my:IntToGridLengthConverter x:Key="IntToGridLengthConverter"/>
+        <my:IntToDoubleConverter x:Key="IntToDoubleConverter"/>
+        <my:NullToBooleanConverter x:Key="NullToBooleanConverter"/>
+        <my:ValidSelectedItemToBooleanConverter x:Key="ValidSelectedItemToBooleanConverter"/>
+        <my:ValidNonOperatorSelectedItemToBooleanConverter x:Key="ValidNonOperatorSelectedItemToBooleanConverter"/>
+        <my:ValidInitializedSelectedItemToBooleanConverter x:Key="ValidInitializedSelectedItemToBooleanConverter"/>
+        <my:NegatingBooleanToVisibilityConverter x:Key="NegatingBooleanToVisibilityConverter"/>
+        <my:VisibilityToBooleanConverter x:Key="VisibilityToBooleanConverter"/>
+        <my:NullOrEmptyToVisibilityConverter x:Key="NullOrEmptyToVisibilityConverter"/>
+        <my:WatchListItemForegroundBrushConverter x:Key="WatchListItemForegroundBrushConverter"/>
+        <my:WatchListSelectedItemBackgroundBrushConverter x:Key="WatchListSelectedItemBackgroundBrushConverter"/>
+        <my:WatchListSelectedItemForegroundBrushConverter x:Key="WatchListSelectedItemForegroundBrushConverter"/>
+        <my:ItemStateBrushConverter x:Key="ItemStateBrushConverter"/>
+        <sys:Boolean x:Key="BooleanTrue">True</sys:Boolean>
+        <sys:Boolean x:Key="BooleanFalse">False</sys:Boolean>
+        <Style x:Key="TooltipTextBlock" TargetType="TextBlock">
+            <Setter Property="TextTrimming" Value="CharacterEllipsis"></Setter>
+            <EventSetter Event="ToolTipOpening" Handler="TooltipTextBlock_ToolTipOpening"></EventSetter>
+        </Style>
+        <Style x:Key="ImageInitAwareToolTipTextBlock" TargetType="TextBlock" BasedOn="{StaticResource TooltipTextBlock}">           
+            <Style.Triggers>
+                <!-- not selected -->
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBoxItem},
+                            Path=IsSelected}" Value="false"/>
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Foreground">
+                        <Setter.Value>                            
+                            <Binding Path="ImageIsInitialized"
+                                     Converter="{StaticResource WatchListItemForegroundBrushConverter}"/>                            
+                        </Setter.Value>
+                    </Setter>
+                </MultiDataTrigger>
+                <!-- selected and image valid -->
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBoxItem},
+                            Path=IsSelected}" Value="true"/>
+                        <Condition Binding="{Binding Path=IsValidExpression}" Value="true"/>
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Foreground">
+                        <Setter.Value>
+                            <MultiBinding Converter="{StaticResource WatchListSelectedItemForegroundBrushConverter}">
+                                <Binding Path="(Selector.IsSelectionActive)"
+                                         RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=ListBoxItem}">
+                                </Binding>
+                                <Binding Path="ImageIsInitialized"/>
+                                <Binding Path="IsEditing"/>
+                                <Binding Path="IsOpen" ElementName="contextMenu"/>
+                            </MultiBinding>
+                        </Setter.Value>
+                    </Setter>
+                </MultiDataTrigger>
+            </Style.Triggers>           
+        </Style>
+        <Style TargetType="{x:Type ListBoxItem}">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Background" Value="{DynamicResource VsBrush.Window}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource VsBrush.AccentPale}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="0,0,0,1" 
+                                Padding="0,0,0,0" SnapsToDevicePixels="true">
+                            <ContentPresenter SnapsToDevicePixels="True"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <!-- non selected style -->
+                            <Trigger Property="IsSelected" Value="false">
+                                <Setter Property="Foreground">
+                                    <Setter.Value>
+                                        <Binding Path="IsValidExpression"
+                                                 Converter="{StaticResource WatchListItemForegroundBrushConverter}"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <!-- selected style -->
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter Property="Background">
+                                    <Setter.Value>
+                                        <MultiBinding Converter="{StaticResource WatchListSelectedItemBackgroundBrushConverter}">
+                                            <Binding Path="(Selector.IsSelectionActive)"
+                                                     RelativeSource="{RelativeSource Self}">
+                                            </Binding>
+                                            <Binding Path="IsValidExpression"></Binding>
+                                            <Binding Path="IsEditing"></Binding>
+                                            <Binding Path="IsOpen" ElementName="contextMenu"></Binding>
+                                        </MultiBinding>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Foreground">
+                                    <Setter.Value>
+                                        <MultiBinding Converter="{StaticResource WatchListSelectedItemForegroundBrushConverter}">
+                                            <Binding Path="(Selector.IsSelectionActive)"
+                                                     RelativeSource="{RelativeSource Self}">
+                                            </Binding>
+                                            <Binding Path="IsValidExpression"></Binding>
+                                            <Binding Path="IsEditing"></Binding>
+                                            <Binding Path="IsOpen" ElementName="contextMenu"></Binding>
+                                        </MultiBinding>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <DataTemplate x:Key="itemTemplate">
+            <Grid Background="Transparent" MouseRightButtonDown="listBoxItem_RightMouseButtonDown">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="19"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0" Grid.Row="0"  
+                        Background="{DynamicResource VsBrush.Window}" BorderThickness="0,0,1,0" 
+                        BorderBrush="{DynamicResource VsBrush.AccentPale}">
+                    <Border Margin="1,3,0,-3" VerticalAlignment="Top" HorizontalAlignment="Center" Width="9" Height="9" BorderThickness="1" 
+                            Background="Transparent"
+                            BorderBrush="LightGray" MouseLeftButtonDown="listBoxItem_ExpandButtonLeftMouseDown"
+                        Visibility="{Binding Path=Expression, Mode=OneWay, Converter={StaticResource NullOrEmptyToVisibilityConverter}, 
+                        ConverterParameter={StaticResource BooleanTrue}}">
+                        <Canvas>
+                            <Line Canvas.Top="4" Canvas.Left="4" X1="-3" X2="2" Y1="-.5" Y2="-.5"
+                          StrokeThickness="1" Stroke="Gray"/>
+                            <Line Canvas.Top="4" Canvas.Left="4" X1="-.5" X2="-.5" Y1="-3" Y2="2"
+                          StrokeThickness="1" Stroke="Gray" Visibility="{Binding Path=IsExpanded, Mode=OneWay, 
+                            Converter={StaticResource NegatingBooleanToVisibilityConverter}}"/>
+                        </Canvas>
+                    </Border>
+                </Border>
+                <Border Grid.Column="1" Grid.Row="0">
+                    <StackPanel Name="Expression">
+                        <Control MouseDoubleClick="expression_DoubleClick"
+                                 Focusable="False">
+                            <Control.Template>
+                                <ControlTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="16"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Border Grid.Column="0" Background="Transparent">
+                                        <Border Margin="0,0,1,4" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="7" Height="7" 
+                                            Background="{Binding Path=IsValidExpression, Mode=OneWay, Converter={StaticResource ItemStateBrushConverter}}"
+                                            Visibility="{Binding Path=Expression, Mode=OneWay, Converter={StaticResource NullOrEmptyToVisibilityConverter}}">
+                                        </Border>
+                                        </Border>
+                                        <TextBlock Style="{StaticResource TooltipTextBlock}"
+                                               Grid.Column="1" Text="{Binding Path=Expression, Mode=OneWay}" Height="16" VerticalAlignment="Top" 
+                                                   ToolTip="{Binding Path=Expression, Mode=OneWay}"
+                                               Margin="2,-.5,0,.5" Focusable="False"
+                                               Visibility="{Binding Path=IsEditing, Mode=OneWay, Converter={StaticResource NegatingBooleanToVisibilityConverter}}">                                            
+                                        </TextBlock>
+                                        <TextBox Grid.Column="1" Name="editBox" BorderThickness="0" Height="16" VerticalAlignment="Top" Margin="0,-.5,0,.5"
+                                             Visibility="{Binding Path=IsEditing, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                             GotFocus="editBox_GotFocus"
+                                             LostFocus="editBox_LostFocus"
+                                             PreviewKeyDown="editBox_PreviewKeyDown"></TextBox>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Control.Template>
+                        </Control>
+                        <Grid Name="Details" Margin="4,1,0,4"
+                              Visibility="{Binding Path=IsExpanded, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="{Binding ThumbnailWidth, Mode=OneWay, Converter={StaticResource IntToGridLengthConverter}}"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Canvas Grid.Column="0" Width="{Binding Path=ThumbnailWidth, Converter={StaticResource IntToDoubleConverter}}" 
+                                    Height="{Binding Path=ThumbnailHeight, Converter={StaticResource IntToDoubleConverter}}" 
+                                       Background="{DynamicResource ImageViewBackground}"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center" SnapsToDevicePixels="True">
+                                <Image Canvas.Left="0" Canvas.Top="0" 
+                                       Width="{Binding Path=ThumbnailWidth, Converter={StaticResource IntToDoubleConverter}}" 
+                                       Height="{Binding Path=ThumbnailHeight, Converter={StaticResource IntToDoubleConverter}}" 
+                                       Stretch="Uniform" 
+                                       Source="{Binding Path=Thumbnail, Mode=OneWay}" 
+                                       SnapsToDevicePixels="True"
+                                       Focusable="False"/>
+                            </Canvas>
+                            <TextBlock Grid.Column="0" Text="{Binding Path=ThumbnailInfoString, Mode=OneWay, StringFormat='[{0}]'}" 
+                                       HorizontalAlignment="Center" VerticalAlignment="Center" Focusable="False"
+                                       Foreground="Gray"
+                                       Visibility="{Binding Path=ThumbnailInfoString, Mode=OneWay, 
+                                                   Converter={StaticResource NullOrEmptyToVisibilityConverter}}">
+                            </TextBlock>
+                            <StackPanel Name="Properties" Grid.Column="1" Orientation="Vertical"
+                                        Margin="4,0,4,0">
+                                <TextBlock Style="{StaticResource ImageInitAwareToolTipTextBlock}"
+                                           Text="{Binding Path=ImageSizeString, Mode=OneWay}"
+                                           ToolTip="{Binding Path=ImageSizeString, Mode=OneWay}"/>
+                                <TextBlock Style="{StaticResource ImageInitAwareToolTipTextBlock}"
+                                           Text="{Binding Path=ImageFormatString, Mode=OneWay}"
+                                           ToolTip="{Binding Path=ImageFormatString, Mode=OneWay}"/>
+                                <TextBlock Style="{StaticResource TooltipTextBlock}"
+                                           Text="{Binding Path=ExpressionDisplayType, Mode=OneWay}"
+                                           ToolTip="{Binding Path=ExpressionDisplayType, Mode=OneWay}"/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <ListBox Name="listBox" ItemTemplate="{StaticResource itemTemplate}" Focusable="False" 
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 ScrollViewer.CanContentScroll="False"                 
+                 BorderThickness="0" 
+                 MouseLeftButtonDown="listBox_MouseLeftButtonDown"
+                 Background="{DynamicResource VsBrush.Window}">
+            <ListBox.ContextMenu>
+                <ContextMenu Name="contextMenu" DataContext="{Binding Path=PlacementTarget, RelativeSource={RelativeSource Self}}">
+                    <MenuItem Header="{x:Static resx:Resources.ExpandAllMenuItem}" Click="ContextMenu_ExpandAllClick"/>
+                    <MenuItem Header="{x:Static resx:Resources.CollapseAllMenuItem}" Click="ContextMenu_CollapseAllClick"/>
+                    <MenuItem Header="{x:Static resx:Resources.ExpandNewItemsMenuItem}" IsCheckable="True" IsChecked="{Binding Path=DataContext.ExpandNewItems}"/>
+                    <MenuItem Header="{x:Static resx:Resources.LargeThumbnailsMenuItem}" IsCheckable="True" IsChecked="{Binding Path=DataContext.ShowLargeThumbnails,
+                        Mode=TwoWay}" Click="ContextMenu_LargeThumbnailsClick"/>
+                    <Separator/>
+                    <MenuItem Header="{x:Static resx:Resources.ContextMenuAutoMaximizeText}" IsCheckable="True" IsChecked="{Binding Path=DataContext.AutoScaleColormap}"/>
+                    <MenuItem Header="{x:Static resx:Resources.ContextMenuColormapJetText}" IsCheckable="True" IsChecked="{Binding Path=DataContext.ColormapJet}"/>
+                    <MenuItem Header="{x:Static resx:Resources.ContextMenuFourChannelIgnoreAlphaText}" IsCheckable="True" IsChecked="{Binding Path=DataContext.FourChannelIgnoreAlpha}"/>
+                    <Separator/>
+                    <MenuItem Header="{x:Static resx:Resources.AddToWatchMenuItem}" Click="ContextMenu_AddToWatchClick"
+                              DataContext="{Binding Path=PlacementTarget, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}"
+                              IsEnabled="{Binding Path=SelectedItem, Converter={StaticResource ValidSelectedItemToBooleanConverter}}"/>
+                    <MenuItem Header="{x:Static resx:Resources.AddAddressToWatchMenuItem}" Click="ContextMenu_AddAddressToWatchClick"
+                              DataContext="{Binding Path=PlacementTarget, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}"
+                              IsEnabled="{Binding Path=SelectedItem, Converter={StaticResource ValidNonOperatorSelectedItemToBooleanConverter}}"/>
+                    <Separator/>
+                    <MenuItem Header="{x:Static resx:Resources.DumpToFileMenuItem}" Click="ContextMenu_DumpImageToFileClick"
+                              DataContext="{Binding Path=PlacementTarget, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}"
+                              IsEnabled="{Binding Path=SelectedItem, Converter={StaticResource ValidInitializedSelectedItemToBooleanConverter}}"/>
+                    <MenuItem Header="{x:Static resx:Resources.CopyToClipboardMenuItem}" Click="ContextMenu_CopyToClipboardClick"
+                              DataContext="{Binding Path=PlacementTarget, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}"
+                              IsEnabled="{Binding Path=SelectedItem, Converter={StaticResource ValidInitializedSelectedItemToBooleanConverter}}"/>
+                    <!--<Separator/>
+                    <MenuItem Header="Unselect" Click="ContextMenu_UnselectClick"
+                              DataContext="{Binding Path=PlacementTarget, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}"
+                              IsEnabled="{Binding Path=SelectedItem, Converter={StaticResource ValidSelectedItemToBooleanConverter}}"/>-->
+                </ContextMenu>
+            </ListBox.ContextMenu>
+        </ListBox>
+    </Grid>
+</UserControl>

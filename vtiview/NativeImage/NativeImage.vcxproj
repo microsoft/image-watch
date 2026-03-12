@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{3C290E87-A850-44C5-BAA5-7A2491054313}</ProjectGuid>
+    <Keyword>ManagedCProj</Keyword>
+    <RootNamespace>NativeImage</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <NuGetPackages>$(MSBuildThisFileDirectory)..\..\NuGetPackages</NuGetPackages>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <Import Project="$(NuGetPackages)\Microsoft.VisualStudioEng.MicroBuild.Core.1.0.0\build\Microsoft.VisualStudioEng.MicroBuild.Core.props" Condition="Exists('$(NuGetPackages)\Microsoft.VisualStudioEng.MicroBuild.Core.1.0.0\build\Microsoft.VisualStudioEng.MicroBuild.Core.props')" />
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CLRSupport>true</CLRSupport>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CLRSupport>true</CLRSupport>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <SpectreMitigation>Spectre</SpectreMitigation>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <SpectreMitigation>Spectre</SpectreMitigation>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <SpectreMitigation>Spectre</SpectreMitigation>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <SpectreMitigation>Spectre</SpectreMitigation>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Condition="'$(SignType)' == 'real'">
+    <SignAssembly>true</SignAssembly>
+    <LinkDelaySign>true</LinkDelaySign>
+    <LinkKeyFile>$(MSBuildProjectDirectory)\..\..\..\InternalAPIs\DevDiv\FinalPublicKey.snk</LinkKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>obj\$(Platform)\$(Configuration)\</IntDir>
+    <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)VisionTools\inc;</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>obj\$(Platform)\$(Configuration)\</IntDir>
+    <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)VisionTools\inc;</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <AdditionalIncludeDirectories>..\..\..\..\main\VisionTools\inc</AdditionalIncludeDirectories>
+      <FunctionLevelLinking Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</FunctionLevelLinking>
+      <FunctionLevelLinking Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</FunctionLevelLinking>
+      <SDLCheck Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</SDLCheck>
+      <SDLCheck Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</SDLCheck>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">/ZH:SHA_256 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">/ZH:SHA_256 %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>ole32.lib;hdpio.lib;JXRGlueLib.lib;JXRCommonLib.lib;JXREncodeLib.lib;JXRDecodeLib.lib</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>libcmtd.lib</IgnoreSpecificDefaultLibraries>
+      <AdditionalLibraryDirectories>$(SolutionDir)VisionTools\lib\v143\$(Platform)\Release;$(SolutionDir)\contrib\JXRLib\jxrgluelib\$(Platform)\Release/JXRGlueLib;$(SolutionDir)\contrib\JXRLib\image\projects\$(Platform)\Release/JXRCommonLib;$(SolutionDir)\contrib\JXRLib\image\projects\$(Platform)\Release/JXREncodeLib;$(SolutionDir)\contrib\JXRLib\image\projects\$(Platform)\Release/JXRDecodeLib</AdditionalLibraryDirectories>
+      <OptimizeReferences Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</OptimizeReferences>
+      <OptimizeReferences Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</OptimizeReferences>
+      <EnableCOMDATFolding Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</EnableCOMDATFolding>
+      <EnableCOMDATFolding Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</EnableCOMDATFolding>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">/debugtype:cv,fixup %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">/debugtype:cv,fixup %(AdditionalOptions)</AdditionalOptions>
+      <CETCompat Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</CETCompat>
+      <CETCompat Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</CETCompat>
+    </Link>
+    <PreBuildEvent>
+      <Command>del /q /s $(SolutionDir)NativeImage.dll.metagen</Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <AdditionalIncludeDirectories>..\..\..\..\main\VisionTools\inc</AdditionalIncludeDirectories>
+      <FunctionLevelLinking Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</FunctionLevelLinking>
+      <FunctionLevelLinking Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</FunctionLevelLinking>
+      <SDLCheck Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</SDLCheck>
+      <SDLCheck Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</SDLCheck>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">/ZH:SHA_256 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/ZH:SHA_256 %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>ole32.lib;hdpio.lib;JXRGlueLib.lib;JXRCommonLib.lib;JXREncodeLib.lib;JXRDecodeLib.lib</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>libcmtd.lib</IgnoreSpecificDefaultLibraries>
+      <AdditionalLibraryDirectories>$(SolutionDir)VisionTools\lib\v143\$(Platform)\Debug;$(SolutionDir)\contrib\JXRLib\jxrgluelib\$(Platform)\Debug/JXRGlueLib;$(SolutionDir)\contrib\JXRLib\image\projects\$(Platform)\Debug/JXRCommonLib;$(SolutionDir)\contrib\JXRLib\image\projects\$(Platform)\Debug/JXREncodeLib;$(SolutionDir)\contrib\JXRLib\image\projects\$(Platform)\Debug/JXRDecodeLib</AdditionalLibraryDirectories>
+      <OptimizeReferences Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</OptimizeReferences>
+      <OptimizeReferences Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</OptimizeReferences>
+      <EnableCOMDATFolding Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</EnableCOMDATFolding>
+      <EnableCOMDATFolding Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</EnableCOMDATFolding>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">/debugtype:cv,fixup %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/debugtype:cv,fixup %(AdditionalOptions)</AdditionalOptions>
+      <CETCompat Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</CETCompat>
+      <CETCompat Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</CETCompat>
+    </Link>
+    <PreBuildEvent>
+      <Command>del /q /s $(SolutionDir)NativeImage.dll.metagen</Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <FilesToSign Include="$(OutDir)NativeImage.dll">
+      <Authenticode>Microsoft400</Authenticode>
+      <StrongName>StrongName</StrongName>
+    </FilesToSign>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AutoLock.h" />
+    <ClInclude Include="AutoPtr.h" />
+    <ClInclude Include="BandSelectTransform.h" />
+    <ClInclude Include="ColorMap.h" />
+    <ClInclude Include="LocalNativeImage.h" />
+    <ClInclude Include="NativeImageBase.h" />
+    <ClInclude Include="Namespace.h" />
+    <ClInclude Include="NativeImageHelpers.h" />
+    <ClInclude Include="NativeImageView.h" />
+    <ClInclude Include="RemoteNativeImage.h" />
+    <ClInclude Include="Stdafx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="ColorMap.cpp" />
+    <ClCompile Include="LocalNativeImage.cpp" />
+    <ClCompile Include="NativeImageBase.cpp" />
+    <ClCompile Include="NativeImageHelpers.cpp" />
+    <ClCompile Include="NativeImageView.cpp" />
+    <ClCompile Include="ParallelMinMax.cpp">
+      <CompileAsManaged>false</CompileAsManaged>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="RemoteNativeImage.cpp" />
+    <ClCompile Include="Stdafx.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="app.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\VisionTools\src\common\common.vcxproj">
+      <Project>{f0f1aca6-70b0-4322-ab74-c8dc49299240}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\VisionTools\src\core\core.vcxproj">
+      <Project>{7be4fd3f-0b30-422a-aab1-2b23c781689c}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\VisionTools\src\fileio\fileio.vcxproj">
+      <Project>{b8734155-8117-42a9-be7d-155366a035de}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\VisionTools\src\hdpio\hdpio.vcxproj">
+      <Project>{9b7e8327-7b04-49f0-9682-3ec9bca04774}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\VisionTools\src\numerics\numerics.vcxproj">
+      <Project>{d6eb28c8-becf-4d01-8b0d-6018bcd5fb1e}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <Import Project="$(NuGetPackages)\Microsoft.VisualStudioEng.MicroBuild.Core.1.0.0\build\Microsoft.VisualStudioEng.MicroBuild.Core.targets" Condition="Exists('$(NuGetPackages)\Microsoft.VisualStudioEng.MicroBuild.Core.1.0.0\build\Microsoft.VisualStudioEng.MicroBuild.Core.targets')" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

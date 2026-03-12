@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>core</ProjectName>
+    <ProjectGuid>{7BE4FD3F-0B30-422A-AAB1-2B23C781689C}</ProjectGuid>
+    <RootNamespace>core</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)'=='Release'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <SpectreMitigation>Spectre</SpectreMitigation>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <SpectreMitigation>Spectre</SpectreMitigation>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)\Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="..\..\build\winrt-static-lib.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir>..\..\lib\$(PlatformToolset)\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>..\..\obj\$(PlatformToolset)\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules />
+    <CodeAnalysisRuleAssemblies />
+  </PropertyGroup>
+  <PropertyGroup>
+    <CustomBuildBeforeTargets>Link</CustomBuildBeforeTargets>
+    <CustomBuildAfterTargets>ClCompile</CustomBuildAfterTargets>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <ProgramDataBaseFileName>$(OutDir)$(ProjectName).pdb</ProgramDataBaseFileName>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
+    <BuildLog>
+      <Path>$(IntDir)BuildLog.htm</Path>
+    </BuildLog>
+    <ClCompile>
+      <AdditionalOptions>/we4242 %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\..\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ExceptionHandling>false</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <ShowIncludes>false</ShowIncludes>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Lib>
+      <AdditionalDependencies>shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+    <Link>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;common.lib;numerics.lib%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)VisionTools\lib\v141\Win32\Debug</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
+    <BuildLog>
+      <Path>$(IntDir)BuildLog.htm</Path>
+    </BuildLog>
+    <ClCompile>
+      <AdditionalOptions>/we4242 %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>..\..\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <ShowIncludes>false</ShowIncludes>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <ExceptionHandling>false</ExceptionHandling>
+    </ClCompile>
+    <Lib>
+      <AdditionalDependencies>shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="addressgen.cpp" />
+    <ClCompile Include="bicubicbspline.cpp" />
+    <ClCompile Include="convert.cpp" />
+    <ClCompile Include="exifmap.cpp" />
+    <ClCompile Include="fileblobstore.cpp" />
+    <ClCompile Include="function.cpp" />
+    <ClCompile Include="image.cpp" />
+    <ClCompile Include="imagecache.cpp" />
+    <ClCompile Include="imgdbg.cpp" />
+    <ClCompile Include="imgdist.cpp" />
+    <ClCompile Include="imgmath.cpp" />
+    <ClCompile Include="kernel.cpp" />
+    <ClCompile Include="layer.cpp" />
+    <ClCompile Include="memstream.cpp" />
+    <ClCompile Include="separablefilter14641.cpp" />
+    <ClCompile Include="pad.cpp" />
+    <ClCompile Include="params.cpp" />
+    <ClCompile Include="pyramid.cpp" />
+    <ClCompile Include="resize.cpp" />
+    <ClCompile Include="rotate.cpp" />
+    <ClCompile Include="separablefilter.cpp" />
+    <ClCompile Include="separablefilter121.cpp" />
+    <ClCompile Include="separablefilterbox.cpp" />
+    <ClCompile Include="stats.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="taskmanager.cpp" />
+    <ClCompile Include="transform.cpp" />
+    <ClCompile Include="utils.cpp" />
+    <ClCompile Include="vtiio.cpp" />
+    <ClCompile Include="warp.cpp" />
+    <ClCompile Include="warp_special.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="arm\separablefilter121_neon.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="vtiio.h" />
+    <ClInclude Include="vt_addressgen.h" />
+    <ClInclude Include="vt_atltypes.h" />
+    <ClInclude Include="vt_bicubicbspline.h" />
+    <ClInclude Include="vt_blobstore.h" />
+    <ClInclude Include="vt_convert.h" />
+    <ClInclude Include="vt_exifmap.h" />
+    <ClInclude Include="vt_extend.h" />
+    <ClInclude Include="vt_fileblobstore.h" />
+    <ClInclude Include="vt_function.h" />
+    <ClInclude Include="vt_image.h" />
+    <ClInclude Include="vt_imagecache.h" />
+    <ClInclude Include="vt_imgdbg.h" />
+    <ClInclude Include="vt_imgdist.h" />
+    <ClInclude Include="vt_imgmath.h" />
+    <ClInclude Include="vt_kernel.h" />
+    <ClInclude Include="vt_layer.h" />
+    <ClInclude Include="vt_median.h" />
+    <ClInclude Include="vt_memstream.h" />
+    <ClInclude Include="vt_pad.h" />
+    <ClInclude Include="vt_params.h" />
+    <ClInclude Include="vt_pixeliterators.h" />
+    <ClInclude Include="vt_pyramid.h" />
+    <ClInclude Include="vt_readerwriter.h" />
+    <ClInclude Include="vt_rotate.h" />
+    <ClInclude Include="vt_separablefilter.h" />
+    <ClInclude Include="vt_singleton.h" />
+    <ClInclude Include="vt_stats.h" />
+    <ClInclude Include="vt_taskmanager.h" />
+    <ClInclude Include="vt_transform.h" />
+    <ClInclude Include="vt_utils.h" />
+    <ClInclude Include="vt_warp.h" />
+    <ClInclude Include="warp_simd.h" />
+    <ClInclude Include="warp_special_neon.h" />
+    <ClInclude Include="warp_special_sse.h" />
+    <ClInclude Include="warp_sse.h" />
+    <ClInclude Include="x86\separablefilter121_sse.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="vt_convert.inl" />
+    <None Include="vt_imgmath.inl" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

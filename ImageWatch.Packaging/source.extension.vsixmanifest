@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+    <Metadata>
+        <Identity Id="VisualCPPTeam.ImageWatch2022" Version="1.0.22" Language="en-US" Publisher="Microsoft" />
+        <DisplayName>Image Watch for Visual Studio 2022</DisplayName>
+        <Description xml:space="preserve">Provides a watch window for visualizing in-memory images (bitmaps) when debugging native C++ code for Visual Studio 2022.</Description>
+        <MoreInfo>http://go.microsoft.com/fwlink/?LinkId=2166368</MoreInfo>
+        <License>EULA.rtf</License>
+        <Icon>ImageWatch.png</Icon>
+        <Tags>image; bitmap; visualizer; viewer; c++; debugging; opencv</Tags>
+    </Metadata>
+    <Installation InstalledByMsi="false">
+        <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.0, 18.0]">
+            <ProductArchitecture>amd64</ProductArchitecture>
+        </InstallationTarget>
+    </Installation>
+    <Dependencies>
+        <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5, 42.0)" />
+    </Dependencies>
+    <Assets>
+        <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="ImageWatch" Path="|ImageWatch;PkgdefProjectOutputGroup|" />
+        <Asset Type="NativeVisualizer" d:Source="File" Path="ImageWatchOpenCV.natvis" />
+        <Asset Type="NativeVisualizer" d:Source="File" Path="ImageWatchWinMedia.natvis" />
+        <Asset Type="NativeVisualizer" d:Source="File" Path="ImageWatchWinRT.natvis" />
+        <Asset Type="NativeVisualizer" d:Source="File" Path="ImageWatchUnrealEngine.natvis" />
+    </Assets>
+    <Prerequisites>
+        <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[15.0.26606.0,)" DisplayName="Visual Studio core editor" />
+    </Prerequisites>
+</PackageManifest>

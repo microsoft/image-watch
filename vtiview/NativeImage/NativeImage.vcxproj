@@ -97,7 +97,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>ole32.lib;hdpio.lib;JXRGlueLib.lib;JXRCommonLib.lib;JXREncodeLib.lib;JXRDecodeLib.lib</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>libcmtd.lib</IgnoreSpecificDefaultLibraries>
-      <AdditionalLibraryDirectories>$(SolutionDir)VisionTools\lib\v143\$(Platform)\Release;$(SolutionDir)\contrib\JXRLib\jxrgluelib\$(Platform)\Release/JXRGlueLib;$(SolutionDir)\contrib\JXRLib\image\projects\$(Platform)\Release/JXRCommonLib;$(SolutionDir)\contrib\JXRLib\image\projects\$(Platform)\Release/JXREncodeLib;$(SolutionDir)\contrib\JXRLib\image\projects\$(Platform)\Release/JXRDecodeLib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)VisionTools\lib\$(PlatformToolset)\$(Platform)\Release;$(SolutionDir)\contrib\JXRLib\jxrgluelib\$(Platform)\Release/JXRGlueLib;$(SolutionDir)\contrib\JXRLib\image\projects\$(Platform)\Release/JXRCommonLib;$(SolutionDir)\contrib\JXRLib\image\projects\$(Platform)\Release/JXREncodeLib;$(SolutionDir)\contrib\JXRLib\image\projects\$(Platform)\Release/JXRDecodeLib</AdditionalLibraryDirectories>
       <OptimizeReferences Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</OptimizeReferences>
       <OptimizeReferences Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</OptimizeReferences>
       <EnableCOMDATFolding Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</EnableCOMDATFolding>
@@ -129,7 +129,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>ole32.lib;hdpio.lib;JXRGlueLib.lib;JXRCommonLib.lib;JXREncodeLib.lib;JXRDecodeLib.lib</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>libcmtd.lib</IgnoreSpecificDefaultLibraries>
-      <AdditionalLibraryDirectories>$(SolutionDir)VisionTools\lib\v143\$(Platform)\Debug;$(SolutionDir)\contrib\JXRLib\jxrgluelib\$(Platform)\Debug/JXRGlueLib;$(SolutionDir)\contrib\JXRLib\image\projects\$(Platform)\Debug/JXRCommonLib;$(SolutionDir)\contrib\JXRLib\image\projects\$(Platform)\Debug/JXREncodeLib;$(SolutionDir)\contrib\JXRLib\image\projects\$(Platform)\Debug/JXRDecodeLib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)VisionTools\lib\$(PlatformToolset)\$(Platform)\Debug;$(SolutionDir)\contrib\JXRLib\jxrgluelib\$(Platform)\Debug/JXRGlueLib;$(SolutionDir)\contrib\JXRLib\image\projects\$(Platform)\Debug/JXRCommonLib;$(SolutionDir)\contrib\JXRLib\image\projects\$(Platform)\Debug/JXREncodeLib;$(SolutionDir)\contrib\JXRLib\image\projects\$(Platform)\Debug/JXRDecodeLib</AdditionalLibraryDirectories>
       <OptimizeReferences Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</OptimizeReferences>
       <OptimizeReferences Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</OptimizeReferences>
       <EnableCOMDATFolding Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</EnableCOMDATFolding>

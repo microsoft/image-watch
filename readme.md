@@ -1,6 +1,13 @@
 # Image Watch for Visual Studio
 
-Visual Studio extension providing a watch window for visualizing in-memory images (bitmaps) when debugging native C++ code.
+This repository contains sample source code used by the Image Watch Visual Studio extension, a watch window for visualizing in-memory images (bitmaps) when debugging native C++ code.
+
+> **Deprecation notice:** Image Watch was deprecated as of April 1, 2026, and will be removed. The following Visual Studio Marketplace listings are no longer maintained and will be removed:
+>
+> - [Image Watch](https://marketplace.visualstudio.com/items?itemName=VisualCPPTeam.ImageWatch)
+> - [Image Watch for Visual Studio 2017](https://marketplace.visualstudio.com/items?itemName=VisualCPPTeam.ImageWatch2017)
+> - [Image Watch for Visual Studio 2019](https://marketplace.visualstudio.com/items?itemName=VisualCPPTeam.ImageWatch2019)
+> - [Image Watch for Visual Studio 2022](https://marketplace.visualstudio.com/items?itemName=VisualCPPTeam.ImageWatchForVisualStudio2022)
 
 # Required Workloads and Components
 
